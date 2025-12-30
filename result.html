@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JKBOSE Marksheet</title>
+
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#f2f4f7;
+      margin:0;
+      padding:0;
+    }
+
+    .sheet{
+      width:360px;
+      margin:30px auto;
+      background:#fff;
+      padding:15px;
+      border:1px solid #ccc;
+    }
+
+    h3{
+      text-align:center;
+      color:#800000;
+      margin-bottom:10px;
+    }
+
+    .info{
+      font-size:14px;
+      margin-bottom:10px;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+    }
+
+    table, th, td{
+      border:1px solid #000;
+    }
+
+    th, td{
+      padding:6px;
+      font-size:13px;
+      text-align:center;
+    }
+
+    .result{
+      margin-top:10px;
+      font-size:14px;
+      font-weight:bold;
+      text-align:center;
+    }
+
+    .note{
+      margin-top:10px;
+      font-size:11px;
+      color:red;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="sheet">
+    <h3>Jammu & Kashmir Board of School Education</h3>
+    <h4 style="text-align:center;">Marks Sheet </h4>
+
+    <div class="info">
+      <b>Name:</b> <span id="name"></span><br>
+      <b>Roll No:</b> <span id="roll"></span>
+    </div>
+
+    <table>
+      <tr>
+        <th>Subject</th>
+        <th>Marks</th>
+      </tr>
+      <tr>
+        <td>English</td>
+        <td id="m1"></td>
+      </tr>
+      <tr>
+        <td>Mathematics</td>
+        <td id="m2"></td>
+      </tr>
+      <tr>
+        <td>Science</td>
+        <td id="m3"></td>
+      </tr>
+      <tr>
+        <td>Social Science</td>
+        <td id="m4"></td>
+      </tr>
+      <tr>
+        <th>Total</th>
+        <th id="total"></th>
+      </tr>
+    </table>
+
+    <div class="result" id="status"></div>
+
+    <div class="note">
+      This marks sheet is only for fun. Not an official JKBOSE document.
+    </div>
+  </div>
+
+  <script>
+    let params = new URLSearchParams(window.location.search);
+
+    let name = params.get("name");
+    let roll = params.get("roll");
+
+    document.getElementById("name").innerText = name;
+    document.getElementById("roll").innerText = roll;
+
+    function randomMarks(){
+      return Math.floor(Math.random() * 41) + 40; // 40–80
+    }
+
+    let m1 = randomMarks();
+    let m2 = randomMarks();
+    let m3 = randomMarks();
+    let m4 = randomMarks();
+
+    document.getElementById("m1").innerText = m1;
+    document.getElementById("m2").innerText = m2;
+    document.getElementById("m3").innerText = m3;
+    document.getElementById("m4").innerText = m4;
+
+    let total = m1 + m2 + m3 + m4;
+    document.getElementById("total").innerText = total;
+
+    if(m1>=33 && m2>=33 && m3>=33 && m4>=33){
+      document.getElementById("status").innerText = "RESULT: PASS ✅";
+    }else{
+      document.getElementById("status").innerText = "RESULT: FAIL ❌";
+    }
+  </script>
+
+</body>
+</html>
